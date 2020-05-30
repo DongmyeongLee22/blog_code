@@ -1,0 +1,22 @@
+language: node_js
+
+node_js:
+  - lts/*
+
+before_install:
+  mv vuepress/** .
+
+install:
+  - yarn install
+
+script:
+  - yarn build
+
+deploy:
+  provider: pages
+  skip_cleanup: true
+  local_dir: blog/.vuepress/dist
+  github_token: $GITHUB_TOKEN # travis ci 홈페이지에서 토큰 등록
+  keep_history: true
+  on:
+    branch: vuepress
